@@ -35,7 +35,9 @@ def password_gen(p_quantity, p_size):
     header('Please, wait a moment.')
     sleep(3)
     
-    possibilities = string.ascii_letters + string.punctuation + string.digits
+    symbols = '!@#$%&*-_+=?'
+    
+    possibilities = string.ascii_letters + symbols + string.digits
 
     passwords = [] 
     
@@ -49,24 +51,34 @@ def password_gen(p_quantity, p_size):
         print(pword)
     
     sleep(1)
+    return passwords
 
 def save(passwords):
     while True:
         saving = input('Would you like to save the generated password(s), inside of a CSV file?\b [Y]es or [N]o: ')
         
-        if saving.lower().startswith  ('y'):
+        if saving.lower().startswith('y'):
             line()
             print('Saving your passwords...')
+            line()
             sleep(1)
-            with open('passwords.csv', 'w', encoding='utf-8') as file:
-                file.write('Password\n')
+            with open('passwords.csv', 'a', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                writer.writerow(['Passwords'])
                 for p in passwords:
-                    file.write(p + '\n')
-            print('Passwords saved in password.csv')
-            
-        else:
-            print('Passwords were not saved.')
+                    writer.writerow([p])
+            print('Passwords saved in passwords.csv')
+            line()
             break
+            
+        elif saving.lower().startswith('n'):
+            print('Passwords were not saved.')
+            line()
+            break
+        
+        else:
+            print("\033[0;31;47mERROR! Enter only [Y]es or [N]o!\033[m")
+            continue
 
 def main():
     while True:
@@ -79,7 +91,7 @@ def main():
             save(passwords)
             sleep(1)
     
-        if generate.lower().startswith('n'):
+        elif generate.lower().startswith('n'):
             sleep(1)
             header('Exiting...')
             sleep(2)
