@@ -72,6 +72,7 @@ def save(passwords):
             break
             
         elif saving.lower().startswith('n'):
+            line()
             print('Passwords were not saved.')
             line()
             break
