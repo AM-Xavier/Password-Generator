@@ -2,6 +2,7 @@
 
 This project is a Password Generator built with Python, designed to create secure and customizable passwords.
 
+
 📌 Features
 
 Generate multiple passwords at once
@@ -14,6 +15,7 @@ Option to save the generated passwords into a CSV file
 
 Modular code structure (main.py, functions.py, interface.py) for better readability and maintenance
 
+
 🛠️ Technologies Used
 
 Python standard libraries:
@@ -23,6 +25,7 @@ random & string → password generation
 time → delays for a better interface experience
 
 os & sys → file handling and path management
+
 
 🚀 How It Works
 
